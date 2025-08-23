@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Date 💕</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff5f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      background: #ffe4ec;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #d6336c;
+    }
+    button {
+      background: #d6336c;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.2s ease-in-out;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background: #b02754;
+    }
+    input {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 80%;
+    }
+
+    /* Modal */
+    #modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    #modalContent {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      width: 300px;
+      animation: pop 0.3s ease;
+    }
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>☕ Coffee Date?</h1>
+    <p>Will you go on a coffee date with me?</p>
+    <input type="date" id="dateInput"><br>
+    <input type="text" id="messageInput" placeholder="Write a cute message..."><br>
+    <button onclick="sayYes()">Yes 💖</button>
+    <button id="nobutton">No 😢</button>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal">
+    <div id="modalContent">
+      <p id="modalText"></p>
+      <button onclick="closeModal()">Okay 💕</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("nobutton");
+
+    // Show modal
+    function showModal(text) {
+      document.getElementById("modalText").innerHTML = text;
+      document.getElementById("modal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    // Handle Yes
+    function sayYes() {
+      const dateInput = document.getElementById("dateInput").value;
+      const messageInput = document.getElementById("messageInput").value;
+      if (!dateInput) {
+        showModal("📅 Please pick a date!");
+        return;
+      }
+      const formattedDate = new Date(dateInput).toDateString();
+      showModal(`☕ Date set for <b>${formattedDate}</b><br>💌 Message: "${messageInput || 'No message, just vibes ✨'}"`);
+    }
+
+    // No button escapes
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.floor(Math.random() * (window.innerWidth - 100));
+      const y = Math.floor(Math.random() * (window.innerHeight - 50));
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+  </script>
+</body>
+</html>

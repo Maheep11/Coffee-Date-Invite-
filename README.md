@@ -1,7 +1,7 @@
 # Coffee Date Invitation Website
 
 This is a simple custom website that allows you to invite someone for a coffee date.  
-It is built using Python (Flask/Django/Streamlit – specify which one you used).
+It is built using HTML.
 
 ---
 
